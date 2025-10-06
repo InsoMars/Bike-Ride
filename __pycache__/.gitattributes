@@ -1,0 +1,17 @@
+# Normaliza saltos de línea en todo el repo
+* text=auto eol=lf
+
+# Manejo especial para algunos tipos de archivo
+*.py text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+
+# Archivos binarios (no se tocan)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.ico binary
+*.db binary

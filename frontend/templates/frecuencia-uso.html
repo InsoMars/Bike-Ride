@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BikeRide | Frecuencia de Uso</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+  </head>
+
+  <body class="bg-gray-50 text-gray-800">
+    <div class="flex min-h-screen">
+      <!-- Sidebar -->
+      <aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-gray-900 text-gray-100 flex flex-col" aria-label="Sidebar">
+        <div class="p-6 border-b border-gray-700">
+          <h1 class="text-2xl font-semibold text-center text-blue-400">BikeRide</h1>
+          <p class="text-center text-sm text-gray-400 mt-1">Administrador</p>
+        </div>
+
+        <nav class="flex-1 px-4 py-6 space-y-2">
+          <a href="admin-dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-800 hover:text-blue-300 transition">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            Inicio / Dashboard
+          </a>
+
+          <a href="admin-reportes.html" class="flex items-center gap-3 px-3 py-2 rounded-md bg-gray-800 text-blue-400 font-medium">
+            <svg class="w-5 h-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            Reportes
+          </a>
+
+          <a href="admin-tarifas.html" class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-800 hover:text-blue-300 transition">
+            <svg class="w-5 h-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.099 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.099-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Tarifas y Promociones
+          </a>
+
+          <a href="admin-config.html" class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-800 hover:text-blue-300 transition">
+            <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.073 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.072c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.073c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.072 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.073-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.072c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.073c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.072-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Configuración
+          </a>
+
+          <a href="admin-terminales.html" class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-800 hover:text-blue-300 transition">
+            <svg class="w-5 h-5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+            </svg>
+            Operación Terminales
+          </a>
+        </nav>
+
+        <div class="p-4 border-t border-gray-700">
+          <a href="index.html" class="flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white py-2 rounded-md font-medium transition">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h5a2 2 0 012 2v1" />
+            </svg>
+            Cerrar sesión
+          </a>
+        </div>
+      </aside>
+
+      <!-- CONTENIDO PRINCIPAL -->
+      <main class="flex-1 p-6 sm:p-8 sm:ml-64 w-full">
+        <!-- Header con botón de regreso -->
+        <header class="mb-6">
+          <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mb-4 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-200">
+            <span class="sr-only">Abrir menú lateral</span>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+              <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 5.25a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10zm0 5.25a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75z"></path>
+            </svg>
+          </button>
+
+          <div class="flex items-center gap-3 mb-4">
+            <a href="admin-reportes.html" class="text-blue-600 hover:text-blue-700 transition">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+            </a>
+            <div>
+              <h2 class="text-3xl font-bold text-gray-800">Frecuencia de Uso de Bicicletas</h2>
+              <p class="text-gray-500 text-sm mt-1">Consulta cuántas veces se han usado las bicicletas</p>
+            </div>
+          </div>
+        </header>
+
+        <!-- FILTROS -->
+        <section class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 mb-6">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+            </svg>
+            Filtros de Búsqueda
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Fecha Inicio</label>
+              <input type="date" id="fechaInicio" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Fecha Fin</label>
+              <input type="date" id="fechaFin" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Tipo Bicicleta</label>
+              <select id="tipoBicicleta" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <option value="">Todas</option>
+              </select>
+            </div>
+            <div class="flex items-end">
+              <button id="filtrarBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg font-medium transition flex items-center justify-center gap-2 shadow-md hover:shadow-lg">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                Filtrar
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- TABLA -->
+        <section class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+          <div class="p-6 border-b border-gray-200 bg-gray-50">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+              <h3 class="text-lg font-semibold text-gray-800">Resultados del Reporte</h3>
+              <div class="flex gap-3">
+                <button id="excelBtn" class="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition shadow-md hover:shadow-lg">
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Excel
+                </button>
+                <button id="pdfBtn" class="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition shadow-md hover:shadow-lg">
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                  PDF
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-100 text-gray-700 text-xs uppercase font-semibold">
+                <tr>
+                  <th class="px-6 py-3 text-left whitespace-nowrap">ID Bicicleta</th>
+                  <th class="px-6 py-3 text-left whitespace-nowrap">Tipo</th>
+                  <th class="px-6 py-3 text-left whitespace-nowrap">Estación Actual</th>
+                  <th class="px-6 py-3 text-center whitespace-nowrap">Total Viajes</th>
+                  <th class="px-6 py-3 text-left whitespace-nowrap">Último Uso</th>
+                  <th class="px-6 py-3 text-center whitespace-nowrap">Promedio/Día</th>
+                  <th class="px-6 py-3 text-center whitespace-nowrap">Estado</th>
+                </tr>
+              </thead>
+              <tbody id="tablaFrecuencia" class="divide-y divide-gray-200">
+                <tr>
+                  <td colspan="7" class="text-center py-12">
+                    <div class="flex flex-col items-center justify-center text-gray-400">
+                      <svg class="w-16 h-16 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      <p class="text-sm font-medium">Sin datos por el momento</p>
+                      <p class="text-xs mt-1">Utiliza los filtros para buscar información</p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="frecuencia-uso.js"></script>
+  </body>
+</html>

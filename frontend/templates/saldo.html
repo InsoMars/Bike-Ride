@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BikeRide | Mi Billetera</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+</head>
+
+<body class="bg-gray-50 text-gray-800 pb-20 sm:pb-0">
+  <!-- HEADER -->
+  <header class="flex justify-between items-center px-4 sm:px-6 lg:px-8 py-4 bg-white shadow-sm sticky top-0 z-30 border-b border-gray-200">
+    <div class="flex items-center gap-4">
+      <!-- Botón volver (solo desktop) -->
+      <a href="user-dashboard.html" class="hidden sm:flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 transition">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </a>
+      <div>
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Mi Billetera</h2>
+        <p class="text-xs sm:text-sm text-gray-500">Gestiona tu saldo y medios de pago</p>
+      </div>
+    </div>
+
+    <button id="dropdownUserButton" data-dropdown-toggle="dropdownUser"
+      class="w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-600 transition focus:ring-4 focus:ring-gray-300"
+      type="button">
+      <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+      </svg>
+    </button>
+
+    <!-- Dropdown Perfil -->
+    <div id="dropdownUser" class="z-40 hidden bg-white divide-y divide-gray-100 rounded-xl shadow-xl w-56 border border-gray-200 overflow-hidden">
+        <div class="px-4 py-3 text-sm text-gray-900 bg-gray-50">
+          <div class="font-semibold text-base" id="userNameDropdown">Cargando...</div>
+          <div class="text-gray-500 truncate mt-1" id="userEmail">Cargando...</div>
+        </div>
+        <ul class="py-2 text-sm text-gray-700">
+          <li>
+            <a href="user-cuenta.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition">
+              <svg class="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              <span>Mi Cuenta</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-billetera.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition">
+              <svg class="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.099 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.099-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Mi Billetera</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-dashboard.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition">
+              <svg class="w-5 h-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-historial.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition">
+              <svg class="w-5 h-5 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Ver Mi Historial</span>
+            </a>
+          </li>
+        </ul>
+        <div class="py-2">
+          <a href="index.html" id="logoutBtn" class="flex items-center gap-3 px-4 py-2.5 text-red-600 hover:bg-red-50 transition font-medium">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h5a2 2 0 012 2v1" />
+            </svg>
+            <span>Cerrar Sesión</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="px-4 sm:px-6 lg:px-8 pt-6 pb-6 space-y-6 sm:space-y-8 max-w-5xl mx-auto">
+    
+    <!-- Saldo Principal -->
+    <section class="bg-gradient-to-br from-[#18C29C] to-[#149E83] rounded-2xl shadow-xl p-6 sm:p-8 text-white">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <p class="text-sm sm:text-base opacity-90 mb-1">Saldo Disponible</p>
+          <h2 id="saldo-principal" class="text-3xl sm:text-5xl font-bold">$0</h2>
+        </div>
+        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+          <svg class="w-8 h-8 sm:w-10 sm:h-10" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd" />
+          </svg>
+        </div>
+      </div>
+      
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button id="btn-recargar" class="flex-1 bg-white text-[#18C29C] hover:bg-gray-50 py-3 px-6 rounded-lg font-semibold transition shadow-md flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+          </svg>
+          Recargar Saldo
+        </button>
+        <button id="btn-historial" class="flex-1 bg-white bg-opacity-20 hover:bg-opacity-30 py-3 px-6 rounded-lg font-semibold transition flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Ver Historial
+        </button>
+      </div>
+    </section>
+
+    <!-- Medios de Pago Registrados -->
+    <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+      <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-4">Medios de Pago</h3>
+      
+      <div id="medios-pago-container" class="space-y-3">
+        <!-- Loading State -->
+        <div id="loading-medios" class="text-center py-8">
+          <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#18C29C]"></div>
+          <p class="mt-2 text-sm text-gray-600">Cargando medios de pago...</p>
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-medios" class="hidden text-center py-8">
+          <svg class="w-16 h-16 mx-auto text-gray-300 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+          </svg>
+          <p class="text-gray-600 mb-4">No tienes medios de pago registrados</p>
+          <button class="bg-[#18C29C] hover:bg-[#149E83] text-white px-6 py-2 rounded-lg transition">
+            Agregar Medio de Pago
+          </button>
+        </div>
+
+        <!-- Medios de Pago List -->
+        <div id="lista-medios" class="hidden space-y-3"></div>
+      </div>
+
+      <div class="mt-6 pt-6 border-t border-gray-200">
+        <button id="btn-agregar-medio" class="w-full sm:w-auto flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-medium transition">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+          </svg>
+          Agregar Medio de Pago
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- NAVBAR INFERIOR (Solo visible en móviles) -->
+  <nav class="sm:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-lg flex justify-around items-center py-3 z-40">
+    <a href="dashboard-user.html" class="flex flex-col items-center text-gray-500 hover:text-[#18C29C] transition">
+      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+      <span class="text-xs mt-1">Inicio</span>
+    </a>
+    
+    <a href="user-estaciones.html" class="flex flex-col items-center text-gray-500 hover:text-[#18C29C] transition">
+      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0L6.343 16.657a8 8 0 1111.314 0z" />
+      </svg>
+      <span class="text-xs mt-1">Estaciones</span>
+    </a>
+    
+    <a href="user-reservas.html" class="flex flex-col items-center text-gray-500 hover:text-[#18C29C] transition">
+      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7H3v12a2 2 0 002 2z" />
+      </svg>
+      <span class="text-xs mt-1">Reservas</span>
+    </a>
+    
+    <a href="user-cuenta.html" class="flex flex-col items-center text-[#18C29C]">
+      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+      </svg>
+      <span class="text-xs mt-1 font-medium">Cuenta</span>
+    </a>
+  </nav>
+
+  <script src="user-billetera.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</body>
+</html>

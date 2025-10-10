@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BikeRide | Mis Reservas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+  </head>
+
+  <body class="bg-gray-50 text-gray-800 pb-20 sm:pb-0">
+    <!-- HEADER -->
+    <header class="flex justify-between items-center px-4 sm:px-6 lg:px-8 py-4 bg-white shadow-sm sticky top-0 z-30 border-b border-gray-200">
+      <div class="flex items-center gap-4">
+        <!-- Botón volver (solo desktop) -->
+        <a href="user-dashboard.html" class="hidden sm:flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 transition">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </a>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Mis Reservas</h2>
+          <p class="text-xs sm:text-sm text-gray-500">Gestiona tus reservas de bicicletas</p>
+        </div>
+      </div>
+
+      <button id="dropdownUserButton" data-dropdown-toggle="dropdownUser"
+        class="w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-600 transition focus:ring-4 focus:ring-gray-300"
+        type="button">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+        </svg>
+      </button>
+
+      <!-- Dropdown Perfil -->
+      <div id="dropdownUser" class="z-40 hidden bg-white divide-y divide-gray-100 rounded-xl shadow-xl w-56 border border-gray-200 overflow-hidden">
+        <div class="px-4 py-3 text-sm text-gray-900 bg-gray-50">
+          <div class="font-semibold text-base" id="userNameDropdown">Cargando...</div>
+          <div class="text-gray-500 truncate mt-1" id="userEmail">Cargando...</div>
+        </div>
+        <ul class="py-2 text-sm text-gray-700">
+          <li>
+            <a href="user-cuenta.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition">
+              <svg class="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              <span>Mi Cuenta</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-billetera.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition">
+              <svg class="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.099 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.099-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Mi Billetera</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-dashboard.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition">
+              <svg class="w-5 h-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-historial.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition">
+              <svg class="w-5 h-5 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Ver Mi Historial</span>
+            </a>
+          </li>
+        </ul>
+        <div class="py-2">
+          <a href="index.html" id="logoutBtn" class="flex items-center gap-3 px-4 py-2.5 text-red-600 hover:bg-red-50 transition font-medium">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h5a2 2 0 012 2v1" />
+            </svg>
+            <span>Cerrar Sesión</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="px-4 sm:px-6 lg:px-8 pt-6 pb-6 space-y-6 sm:space-y-8 max-w-5xl mx-auto">
+      
+      <!-- Filtros -->
+      <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div>
+            <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-2">Estado</label>
+            <select id="filtro-estado" class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#18C29C] focus:border-transparent text-sm sm:text-base">
+              <option value="">Todas</option>
+              <option value="pendiente">Pendiente</option>
+              <option value="activa">Activa</option>
+              <option value="completada">Completada</option>
+              <option value="cancelada">Cancelada</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-2">Tipo de Bicicleta</label>
+            <select id="filtro-tipo" class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#18C29C] focus:border-transparent text-sm sm:text-base">
+              <option value="">Todas</option>
+              <option value="mecanica">Mecánica</option>
+              <option value="electrica">Eléctrica</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-2">Buscar</label>
+            <input type="text" id="buscar-reserva" placeholder="Buscar por estación..." class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#18C29C] focus:border-transparent text-sm sm:text-base">
+          </div>
+          <div class="flex items-end">
+            <button id="btn-nueva-reserva" class="w-full flex items-center justify-center gap-2 bg-[#18C29C] hover:bg-[#149E83] text-white px-4 py-2.5 rounded-lg font-medium transition shadow-md text-sm sm:text-base">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+              </svg>
+              <span>Nueva Reserva</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lista de Reservas -->
+      <section>
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+          <div class="p-4 sm:p-6 border-b border-gray-200 bg-gray-50">
+            <h3 class="text-lg font-semibold text-gray-800">Mis Reservas</h3>
+          </div>
+
+          <!-- Loading State -->
+          <div id="loading-reservas" class="text-center py-12">
+            <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#18C29C]"></div>
+            <p class="mt-4 text-sm text-gray-600">Cargando reservas...</p>
+          </div>
+
+          <!-- Empty State -->
+          <div id="empty-reservas" class="hidden text-center py-12">
+            <svg class="w-16 h-16 mx-auto text-gray-300 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <h3 class="text-base font-semibold text-gray-700 mb-2">No tienes reservas</h3>
+            <p class="text-sm text-gray-500 mb-4">Crea tu primera reserva para comenzar</p>
+          </div>
+
+          <!-- Tabla de Reservas -->
+          <div id="reservas-container" class="hidden overflow-x-auto">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-100 text-gray-700 text-xs uppercase font-semibold">
+                <tr>
+                  <th class="px-4 sm:px-6 py-3 text-left whitespace-nowrap">ID</th>
+                  <th class="px-4 sm:px-6 py-3 text-left whitespace-nowrap">Fecha</th>
+                  <th class="px-4 sm:px-6 py-3 text-left whitespace-nowrap">Estación Inicio</th>
+                  <th class="px-4 sm:px-6 py-3 text-left whitespace-nowrap">Estación Final</th>
+                  <th class="px-4 sm:px-6 py-3 text-center whitespace-nowrap">Tipo Viaje</th>
+                  <th class="px-4 sm:px-6 py-3 text-center whitespace-nowrap">Estado</th>
+                  <th class="px-4 sm:px-6 py-3 text-center whitespace-nowrap">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tabla-reservas" class="divide-y divide-gray-200 bg-white">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- MODAL NUEVA RESERVA -->
+    <div id="modal-reserva" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+      <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        <div class="sticky top-0 bg-white border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
+          <h3 class="text-xl sm:text-2xl font-bold text-gray-800">Nueva Reserva</h3>
+          <button id="cerrar-modal" class="text-gray-400 hover:text-gray-600 transition">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <form id="form-reserva" class="p-4 sm:p-6 space-y-4">
+          <!-- Estación de Salida -->
+          <div>
+            <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-2">Estación de Salida *</label>
+            <select id="estacion-salida" required class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#18C29C] focus:border-transparent text-sm sm:text-base">
+              <option value="">Selecciona una estación</option>
+            </select>
+          </div>
+
+          <!-- Estación de Llegada -->
+          <div>
+            <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-2">Estación de Llegada *</label>
+            <select id="estacion-llegada" required class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#18C29C] focus:border-transparent text-sm sm:text-base">
+              <option value="">Selecciona una estación</option>
+            </select>
+          </div>
+
+          <!-- Fecha y Hora -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-2">Fecha *</label>
+              <input type="date" id="fecha-reserva" required class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#18C29C] focus:border-transparent text-sm sm:text-base">
+            </div>
+            <div>
+              <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-2">Hora *</label>
+              <input type="time" id="hora-reserva" required class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#18C29C] focus:border-transparent text-sm sm:text-base">
+            </div>
+          </div>
+
+          <!-- Tipo de Bicicleta -->
+          <div>
+            <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-2">Tipo de Bicicleta *</label>
+            <div class="grid grid-cols-2 gap-4">
+              <label class="relative flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-[#18C29C] transition">
+                <input type="radio" name="tipo-bici" value="mecanica" required class="w-4 h-4 text-[#18C29C]">
+                <div class="ml-3">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                    </svg>
+                    <span class="text-sm font-medium text-gray-900">Mecánica</span>
+                  </div>
+                  <p class="text-xs text-gray-500 mt-1">Tradicional</p>
+                </div>
+              </label>
+
+              <label class="relative flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-[#18C29C] transition">
+                <input type="radio" name="tipo-bici" value="electrica" required class="w-4 h-4 text-[#18C29C]">
+                <div class="ml-3">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    <span class="text-sm font-medium text-gray-900">Eléctrica</span>
+                  </div>
+                  <p class="text-xs text-gray-500 mt-1">Con motor</p>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Mensaje de Error -->
+          <div id="error-mensaje" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+            <div class="flex items-start gap-2">
+              <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+              </svg>
+              <span id="error-texto"></span>
+            </div>
+          </div>
+
+          <!-- Botones -->
+          <div class="flex flex-col sm:flex-row gap-3 pt-4">
+            <button type="submit" id="submit-btn" class="flex-1 bg-[#18C29C] hover:bg-[#149E83] text-white py-2 sm:py-3 rounded-lg font-medium transition text-sm sm:text-base">
+              Confirmar Reserva
+            </button>
+            <button type="button" id="cancelar-modal" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 sm:py-3 rounded-lg font-medium transition text-sm sm:text-base">
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- NAVBAR INFERIOR (Solo visible en móviles) -->
+    <nav class="sm:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-lg flex justify-around items-center py-3 z-40">
+      <a href="user-dashboard.html" class="flex flex-col items-center text-gray-500 hover:text-[#18C29C] transition">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+        <span class="text-xs mt-1">Inicio</span>
+      </a>
+      
+      <a href="user-estaciones.html" class="flex flex-col items-center text-gray-500 hover:text-[#18C29C] transition">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+        </svg>
+        <span class="text-xs mt-1">Estaciones</span>
+      </a>
+      
+      <a href="user-reservas.html" class="flex flex-col items-center text-[#18C29C]">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+        <span class="text-xs mt-1 font-medium">Reservas</span>
+      </a>
+      
+      <a href="user-cuenta.html" class="flex flex-col items-center text-gray-500 hover:text-[#18C29C] transition">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+        <span class="text-xs mt-1">Cuenta</span>
+      </a>
+    </nav>
+
+    <script src="user-reservas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  </body>
+</html>

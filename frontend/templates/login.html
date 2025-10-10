@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In/Up Form</title>
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body>
+
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form id="signup-form">
+            <h1>Crea tu Cuenta</h1>
+            <span>Ingresa la información</span>
+            <input type="text" name="nombre" placeholder="Nombre" required />
+            <input type="email" name="correo" placeholder="Email" required />
+            <input type="text" name="cedula" placeholder="Cédula" required />
+            <input type="text" name="telefono" placeholder="Teléfono" required />
+            <input type="text" name="direccion" placeholder="Dirección" required />
+            <input type="password" name="password" placeholder="Contraseña" required />
+            <button type="submit">Vamos!</button>
+            <p id="signup-msg"></p>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form id="signin-form">
+            <h1>Inicia Sesión</h1>
+            <span>Inicia Sesión</span>
+            <input type="email" name="correo" placeholder="Email" required />
+            <input type="password" name="password" placeholder="Contraseña" required />
+            <a href="#">Olvidaste tu contraseña?</a>
+            <button type="submit">Iniciar Sesión</button>
+            <p id="signin-msg"></p>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Bienvenido!</h1>
+                <p>Por favor inicia sesión con tu información personal</p>
+                <button class="ghost" id="signIn">Iniciar Sesion</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Hola Tu!</h1>
+                <p>Aún no tienes cuenta? ¡No te preocupes! Empieza tu travesía con nosotros</p>
+                <button class="ghost" id="signUp">Crear una Cuenta</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/login.js"></script>
+</body>
+</html>

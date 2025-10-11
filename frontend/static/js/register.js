@@ -1,18 +1,8 @@
-const signUpButton = document.getElementById('signUp');
-const signInButton = document.getElementById('signIn');
-const container = document.getElementById('container');
 
-signUpButton.addEventListener('click', () => {
-    container.classList.add("right-panel-active");
-});
-
-signInButton.addEventListener('click', () => {
-    container.classList.remove("right-panel-active");
-});
 
 // -------- FETCH REGISTRO --------
-const signupForm = document.getElementById("signup-form");
-const signupMsg = document.getElementById("signup-msg");
+const signupForm = document.getElementById("register-form");
+const signupMsg = document.getElementById("register-msg");
 
 signupForm.addEventListener("submit", async (e) => {
     e.preventDefault();

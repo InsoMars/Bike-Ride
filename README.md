@@ -65,6 +65,8 @@ pip install -r requirements.txt
 
 ---
 
+Borrar los pycaches
 ## 🧠 Notas finales
 - Asegúrate de tener **PostgreSQL** ejecutándose antes de iniciar el backend.
 - Si cambias el puerto del servidor del front, actualiza las rutas `fetch` del JavaScript.
+

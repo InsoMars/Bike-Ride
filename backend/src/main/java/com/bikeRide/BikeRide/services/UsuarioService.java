@@ -25,8 +25,7 @@ public class UsuarioService {
         if (usuarioRepository.existsByCorreo(usuario.getCorreo())) {
             throw new RuntimeException("El correo ya está registrado");
         }
-
-        
+ 
         // Asigna directamente el rol con ID 3
         RolModel rolPorDefecto = new RolModel();
         rolPorDefecto.setIdRol(3L); // usa el nombre correcto del atributo en tu modelo
@@ -40,6 +39,11 @@ public class UsuarioService {
         return usuarioRepository.findByCorreo(correo)
                 .filter(u -> u.getContrasena().equals(contrasena));
     }
+
+
+        
+
+
 
     
 }

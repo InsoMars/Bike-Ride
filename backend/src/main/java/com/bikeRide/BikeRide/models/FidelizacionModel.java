@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 public class FidelizacionModel {
 
-     @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idFidelizacion;
     private int cantViajesRealizados;

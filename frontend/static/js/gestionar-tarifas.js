@@ -4,7 +4,7 @@ let editando = false;
 let tarifaActual = null;
 
 //  Función genérica para consumir el backend
-async function fetchAPI(endpoint, method = "GET", data = null) {
+async function fetchAPI(endpoint, method = "GET", data = null) { 
   const options = {
     method,
     headers: { "Content-Type": "application/json" },

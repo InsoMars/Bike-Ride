@@ -1,5 +1,5 @@
 // La URL base de tu backend FastAPI, haciendo que sea más fácil de cambiar si el dominio se modifica
-const API_URL = "http://localhost:8000";
+const API_URL = "http://localhost:8080/api";
 
 const loginForm = document.getElementById("login-form");
 const loginMsg = document.getElementById("login-msg");

@@ -5,27 +5,20 @@ document.addEventListener("DOMContentLoaded", () => {
   let mediosPagoData = [];
 
   // -------- ELEMENTOS DEL DOM --------
-  const saldoPrincipal = document.getElementById("saldo-principal");
-  const loadingMedios = document.getElementById("loading-medios");
-  const emptyMedios = document.getElementById("empty-medios");
-  const listaMedios = document.getElementById("lista-medios");
-  const btnAgregarMedio = document.getElementById("btn-agregar-medio");
-  const btnRecargar = document.getElementById("btn-recargar");
-  const btnHistorial = document.getElementById("btn-historial");
+  const $ = (id) => document.getElementById(id);
+  const hide = (el) => el?.classList.add("hidden");
+  const show = (el) => el?.classList.remove("hidden");
 
   // -------- CARGA DE DATOS --------
-  
   async function cargarDatosUsuario() {
     try {
       const res = await fetch(`${API_URL}/usuarios/${userId}`);
       if (!res.ok) return;
       
       const usuario = await res.json();
-      document.getElementById("userNameDropdown").textContent = usuario.nombre || "Usuario";
-      document.getElementById("userEmail").textContent = usuario.email || "";
-      
-      // Cargar saldo
-      saldoPrincipal.textContent = `$${usuario.saldo?.toLocaleString('es-CO') || '0'}`;
+      $("userNameDropdown").textContent = usuario.nombre || "Usuario";
+      $("userEmail").textContent = usuario.email || "";
+      $("saldo-principal").textContent = `$${usuario.saldo?.toLocaleString('es-CO') || '0'}`;
     } catch (err) {
       console.error("Error al cargar usuario:", err);
     }
@@ -33,57 +26,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function cargarMediosPago() {
     try {
-      loadingMedios.classList.remove("hidden");
-      emptyMedios.classList.add("hidden");
-      listaMedios.classList.add("hidden");
+      show($("loading-medios"));
+      hide($("empty-medios"));
+      hide($("lista-medios"));
       
       const res = await fetch(`${API_URL}/metodos-pago/usuario/${userId}`);
       if (!res.ok) throw new Error("Error al cargar medios de pago");
       
       mediosPagoData = await res.json();
       
-      loadingMedios.classList.add("hidden");
+      hide($("loading-medios"));
       
-      if (mediosPagoData.length === 0) {
-        emptyMedios.classList.remove("hidden");
-      } else {
-        listaMedios.classList.remove("hidden");
-        renderizarMediosPago();
-      }
+      mediosPagoData.length === 0 ? show($("empty-medios")) : (show($("lista-medios")), renderizarMediosPago());
     } catch (err) {
       console.error("Error al cargar medios de pago:", err);
-      loadingMedios.classList.add("hidden");
-      emptyMedios.classList.remove("hidden");
+      hide($("loading-medios"));
+      show($("empty-medios"));
     }
   }
 
   // -------- RENDERIZADO --------
-  
   function renderizarMediosPago() {
-    listaMedios.innerHTML = mediosPagoData.map(medio => crearTarjetaMedio(medio)).join('');
-  }
-
-  function crearTarjetaMedio(medio) {
-    const tipoIcono = obtenerIconoTarjeta(medio.tipo_tarjeta);
-    const ultimosDigitos = medio.numero_tarjeta?.slice(-4) || '****';
-    
-    return `
-      <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
-        <div class="flex items-center gap-4">
-          ${tipoIcono}
-          <div>
-            <p class="font-semibold text-gray-900">${medio.tipo_tarjeta || 'Tarjeta'}</p>
-            <p class="text-sm text-gray-500">•••• ${ultimosDigitos}</p>
+    $("lista-medios").innerHTML = mediosPagoData.map(medio => {
+      const tipoIcono = obtenerIconoTarjeta(medio.tipo_tarjeta);
+      const ultimosDigitos = medio.numero_tarjeta?.slice(-4) || '****';
+      
+      return `
+        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+          <div class="flex items-center gap-4">
+            ${tipoIcono}
+            <div>
+              <p class="font-semibold text-gray-900">${medio.tipo_tarjeta || 'Tarjeta'}</p>
+              <p class="text-sm text-gray-500">•••• ${ultimosDigitos}</p>
+            </div>
           </div>
+          <button onclick="window.eliminarMedioPago(${medio.id_metodo_pago})" 
+            class="text-red-600 hover:text-red-800 transition p-2" title="Eliminar">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+          </button>
         </div>
-        <button onclick="window.eliminarMedioPago(${medio.id_metodo_pago})" 
-          class="text-red-600 hover:text-red-800 transition p-2" title="Eliminar">
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-          </svg>
-        </button>
-      </div>
-    `;
+      `;
+    }).join('');
   }
 
   function obtenerIconoTarjeta(tipo) {
@@ -95,92 +80,66 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // -------- MODAL AGREGAR MEDIO DE PAGO --------
-  
   function abrirModalAgregarMedio() {
-    const modal = document.getElementById("modal-agregar-medio");
-    modal?.classList.remove("hidden");
-    document.getElementById("form-medio-pago")?.reset();
-    document.getElementById("error-medio")?.classList.add("hidden");
+    show($("modal-agregar-medio"));
+    $("form-medio-pago")?.reset();
+    hide($("error-medio"));
+    hide($("exito-medio"));
   }
 
   function cerrarModalMedio() {
-    document.getElementById("modal-agregar-medio")?.classList.add("hidden");
+    hide($("modal-agregar-medio"));
   }
 
   function mostrarErrorMedio(mensaje) {
-    const errorDiv = document.getElementById("error-medio");
-    const errorTexto = document.getElementById("error-medio-texto");
-    if (errorTexto) errorTexto.textContent = mensaje;
-    errorDiv?.classList.remove("hidden");
-    errorDiv?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    $("error-medio-texto").textContent = mensaje;
+    show($("error-medio"));
+    $("error-medio")?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   function mostrarExitoMedio(mensaje) {
-    const exitoDiv = document.getElementById("exito-medio");
-    const exitoTexto = document.getElementById("exito-medio-texto");
-    if (exitoTexto) exitoTexto.textContent = mensaje;
-    exitoDiv?.classList.remove("hidden");
-    setTimeout(() => exitoDiv?.classList.add("hidden"), 3000);
+    $("exito-medio-texto").textContent = mensaje;
+    show($("exito-medio"));
+    setTimeout(() => hide($("exito-medio")), 3000);
   }
 
   // -------- VALIDACIÓN BIN --------
-  
   function detectarTipoTarjeta(numero) {
     const bin = numero.replace(/\s/g, '').substring(0, 6);
-    
-    // Validación de BINs conocidos (solo VISA y MASTERCARD)
     if (/^4/.test(bin)) return 'VISA';
     if (/^5[1-5]/.test(bin)) return 'MASTERCARD';
-    
     return null;
   }
 
   function validarNumeroTarjeta(numero) {
     const soloNumeros = numero.replace(/\s/g, '');
+    if (soloNumeros.length < 13 || soloNumeros.length > 19) return false;
     
-    // Validar longitud
-    if (soloNumeros.length < 13 || soloNumeros.length > 19) {
-      return false;
-    }
-    
-    // Algoritmo de Luhn
-    let suma = 0;
-    let alternar = false;
-    
+    let suma = 0, alternar = false;
     for (let i = soloNumeros.length - 1; i >= 0; i--) {
       let digito = parseInt(soloNumeros[i]);
-      
       if (alternar) {
         digito *= 2;
         if (digito > 9) digito -= 9;
       }
-      
       suma += digito;
       alternar = !alternar;
     }
-    
     return suma % 10 === 0;
   }
 
-  // Formatear número de tarjeta mientras se escribe
   function formatearNumeroTarjeta(e) {
     let valor = e.target.value.replace(/\s/g, '');
-    let valorFormateado = valor.match(/.{1,4}/g)?.join(' ') || valor;
-    e.target.value = valorFormateado;
+    e.target.value = valor.match(/.{1,4}/g)?.join(' ') || valor;
     
-    // Detectar tipo de tarjeta
     const tipo = detectarTipoTarjeta(valor);
-    const iconoTipo = document.getElementById("icono-tipo-tarjeta");
-    
-    if (tipo && iconoTipo) {
-      iconoTipo.innerHTML = `<span class="text-sm font-semibold text-green-600">${tipo}</span>`;
-    } else if (iconoTipo) {
-      iconoTipo.innerHTML = '';
+    const iconoTipo = $("icono-tipo-tarjeta");
+    if (iconoTipo) {
+      iconoTipo.innerHTML = tipo ? `<span class="text-sm font-semibold text-green-600">${tipo}</span>` : '';
     }
   }
 
   // -------- AGREGAR MEDIO DE PAGO --------
-  
   async function agregarMedioPago(e) {
     e.preventDefault();
     
@@ -190,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const fechaVencimiento = formData.get('fecha_vencimiento');
     const cvv = formData.get('cvv');
     
-    // Validaciones básicas
+    // Validaciones
     if (!validarNumeroTarjeta(numeroTarjeta)) {
       mostrarErrorMedio("El número de tarjeta no es válido");
       return;
@@ -217,19 +176,18 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     
-    const submitBtn = document.getElementById("submit-medio-btn");
+    const submitBtn = $("submit-medio-btn");
     submitBtn.disabled = true;
     submitBtn.textContent = "Procesando...";
     
     try {
-      // Estructura según el diagrama ER
       const ultimosDigitos = numeroTarjeta.slice(-4);
       const data = {
         id_usuario: parseInt(userId),
         tipo: "TARJETA",
         detalle_metodo: `${tipoTarjeta} **** ${ultimosDigitos} - ${nombreTitular.toUpperCase()}`,
-        token: numeroTarjeta, // El backend debe encriptar esto
-        tipo_tarjeta: tipoTarjeta // Para validación BIN
+        token: numeroTarjeta,
+        tipo_tarjeta: tipoTarjeta
       };
       
       const res = await fetch(`${API_URL}/metodos-pago`, {
@@ -242,8 +200,10 @@ document.addEventListener("DOMContentLoaded", () => {
       
       if (res.ok) {
         mostrarExitoMedio("✓ Medio de pago registrado exitosamente. BIN verificado correctamente.");
-        cerrarModalMedio();
-        await cargarMediosPago();
+        setTimeout(() => {
+          cerrarModalMedio();
+          cargarMediosPago();
+        }, 1500);
       } else {
         mostrarErrorMedio(result.detail || "Error al registrar el medio de pago");
       }
@@ -257,7 +217,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // -------- ELIMINAR MEDIO DE PAGO --------
-  
   window.eliminarMedioPago = async function(idMetodo) {
     if (!confirm("¿Estás seguro de eliminar este medio de pago?")) return;
     
@@ -267,12 +226,11 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: { "Content-Type": "application/json" }
       });
       
-      const result = await res.json();
-      
       if (res.ok) {
         alert("Medio de pago eliminado exitosamente");
         await cargarMediosPago();
       } else {
+        const result = await res.json();
         alert(result.detail || "Error al eliminar el medio de pago");
       }
     } catch (err) {
@@ -282,35 +240,37 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // -------- EVENT LISTENERS --------
+  const eventos = {
+    "btn-agregar-medio": abrirModalAgregarMedio,
+    "btn-cerrar-medio": cerrarModalMedio,
+    "btn-cancelar-medio": cerrarModalMedio,
+    "btn-historial": () => window.location.href = "user-transaccion.html",
+    "btn-recargar": () => alert("Funcionalidad de recarga próximamente"),
+    "logoutBtn": (e) => {
+      e.preventDefault();
+      sessionStorage.clear();
+      localStorage.clear();
+      window.location.href = "index.html";
+    }
+  };
+
+  Object.entries(eventos).forEach(([id, handler]) => $(id)?.addEventListener("click", handler));
   
-  btnAgregarMedio?.addEventListener("click", abrirModalAgregarMedio);
-  document.getElementById("btn-cerrar-medio")?.addEventListener("click", cerrarModalMedio);
-  document.getElementById("btn-cancelar-medio")?.addEventListener("click", cerrarModalMedio);
-  
-  document.getElementById("modal-agregar-medio")?.addEventListener("click", (e) => {
+  $("modal-agregar-medio")?.addEventListener("click", (e) => {
     if (e.target.id === "modal-agregar-medio") cerrarModalMedio();
   });
   
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") cerrarModalMedio();
+    if (e.key === "Escape" && !$("modal-agregar-medio")?.classList.contains("hidden")) {
+      cerrarModalMedio();
+    }
   });
   
-  document.getElementById("form-medio-pago")?.addEventListener("submit", agregarMedioPago);
-  
-  document.getElementById("numero_tarjeta")?.addEventListener("input", formatearNumeroTarjeta);
-  
-  btnHistorial?.addEventListener("click", () => window.location.href = "user-historial.html");
-  btnRecargar?.addEventListener("click", () => alert("Funcionalidad de recarga próximamente"));
-  
-  document.getElementById("logoutBtn")?.addEventListener("click", (e) => {
-    e.preventDefault();
-    sessionStorage.clear();
-    localStorage.clear();
-    window.location.href = "index.html";
-  });
+  $("form-medio-pago")?.addEventListener("submit", agregarMedioPago);
+  $("numero_tarjeta")?.addEventListener("input", formatearNumeroTarjeta);
 
   // -------- INICIALIZAR --------
-  (async function() {
+  (async () => {
     await cargarDatosUsuario();
     await cargarMediosPago();
   })();

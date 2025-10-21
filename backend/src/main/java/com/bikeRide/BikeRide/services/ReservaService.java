@@ -20,19 +20,24 @@ public class ReservaService {
         return reservaRepository.findAll();
     }
 
+
+    
     public ReservaModel crearReserva(ReservaModel reserva) {
 
-         Optional<ReservaModel> reservasActivas = reservaRepository
-        .findByClienteIdAndActiva(reserva.getCliente().getIdPerfilCliente(), true);
+         Long idPerfilCliente = reserva.getIdPerfilCliente().getIdPerfilCliente();
 
+    Optional<ReservaModel> reservaActiva = 
+        reservaRepository.findByClienteIdPerfilClienteAndActiva(idPerfilCliente, true);
 
-         if (!reservasActivas.isEmpty()) {
+    if (reservaActiva.isPresent()) {
         throw new RuntimeException("El cliente ya tiene una reserva activa");
     }
 
     return reservaRepository.save(reserva);
 
 }
+
+
 
     public ReservaModel cancelarReserva(Long idReserva) {
     ReservaModel reserva = reservaRepository.findById(idReserva)

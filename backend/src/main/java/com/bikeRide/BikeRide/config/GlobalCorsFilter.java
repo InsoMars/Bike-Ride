@@ -16,10 +16,13 @@ public class GlobalCorsFilter {
         CorsConfiguration config = new CorsConfiguration();
 
         // ORÍGENES permitidos (tu frontend)
+        
         config.setAllowedOrigins(Arrays.asList(
-            "http://127.0.0.1:5500",
-            "http://localhost:5500"
-        ));
+    "http://127.0.0.1:5500",
+    "http://localhost:5500",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+));
 
         config.setAllowCredentials(true);
         config.addAllowedHeader(CorsConfiguration.ALL);

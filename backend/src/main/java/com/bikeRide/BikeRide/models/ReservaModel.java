@@ -21,30 +21,25 @@ public class ReservaModel {
     private boolean activa;
 
     @ManyToOne
-    @JoinColumn (name= "idPerfilCliente", nullable= false)
-    private PerfilClienteModel cliente;
+    @JoinColumn (name= "id_perfil_cliente", nullable= false)
+    private PerfilClienteModel idPerfilCliente;
 
     @ManyToOne
-    @JoinColumn (name= "idBicicleta", nullable= false)
+    @JoinColumn (name= "id_bicicleta", nullable= false)
     private BicicletaModel bicicleta;
 
     @ManyToOne
-    @JoinColumn (name= "idEstacionInicio", nullable= false)
+    @JoinColumn (name= "id_estacion_inicio", nullable= false)
     private EstacionModel idEstacionInicio;
 
     @ManyToOne
-    @JoinColumn (name= "idEstacionFinal", nullable= false)
+    @JoinColumn (name= "id_estacion_final", nullable= false)
     private EstacionModel idEstacionFinal;
 
      @ManyToOne
-    @JoinColumn (name= "idTipoViaje", nullable= false)
+    @JoinColumn (name= "id_tipoViaje", nullable= false)
     private TipoViajeModel tipoViaje;
 
-
-    
-
-
-    
     public Long getIdReserva() {
         return idReserva;
     }
@@ -53,12 +48,28 @@ public class ReservaModel {
         this.idReserva = idReserva;
     }
 
+    public LocalDateTime getFechaReserva() {
+        return fechaReserva;
+    }
+
+    public void setFechaReserva(LocalDateTime fechaReserva) {
+        this.fechaReserva = fechaReserva;
+    }
+
     public boolean isActiva() {
         return activa;
     }
 
     public void setActiva(boolean activa) {
         this.activa = activa;
+    }
+
+    public PerfilClienteModel getIdPerfilCliente() {
+        return idPerfilCliente;
+    }
+
+    public void setIdPerfilCliente(PerfilClienteModel idPerfilCliente) {
+        this.idPerfilCliente = idPerfilCliente;
     }
 
     public BicicletaModel getBicicleta() {
@@ -92,24 +103,6 @@ public class ReservaModel {
     public void setTipoViaje(TipoViajeModel tipoViaje) {
         this.tipoViaje = tipoViaje;
     }
-
-    public PerfilClienteModel getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(PerfilClienteModel cliente) {
-        this.cliente = cliente;
-    }
-
-    public LocalDateTime getFechaReserva() {
-        return fechaReserva;
-    }
-
-    public void setFechaReserva(LocalDateTime fechaReserva) {
-        this.fechaReserva = fechaReserva;
-    }
-
-
 
 
 
